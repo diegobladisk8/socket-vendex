@@ -15,7 +15,6 @@ const server = http.createServer({
 }, app);
 
 const sio = require('socket.io')(server, {
-    allowEIO3: true,
     handlePreflightRequest: (req, res) => {
         const headers = {
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
