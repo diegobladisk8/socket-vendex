@@ -1,20 +1,32 @@
 {
-  "name": "socket-vendex",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/diegobladisk8/socket-vendex.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/diegobladisk8/socket-vendex/issues"
-  },
-  "homepage": "https://github.com/diegobladisk8/socket-vendex#readme"
+    "name": "socket-vendex",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/diegobladisk8/socket-vendex.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/diegobladisk8/socket-vendex/issues"
+    },
+    "homepage": "https://github.com/diegobladisk8/socket-vendex#readme",
+    "dependencies": {
+        "@types/socket.io": "^2.1.10",
+        "esm": "^3.2.25",
+        "express": "^4.17.1",
+        "inherits": "^2.0.4",
+        "pg": "^8.5.1",
+        "pg-listen": "^1.7.0",
+        "pg-notify": "0.0.15",
+        "socket.io": "^4.4.1",
+        "util": "^0.12.3"
+    }
 }
