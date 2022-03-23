@@ -16,6 +16,10 @@ const server = http.createServer({
 
 const sio = require('socket.io')(server, {
     allowEIO3: true,
+    cors: {
+        origin: "https://pos.vendex.ec",
+        methods: ["GET", "POST"],
+    },
     handlePreflightRequest: (req, res) => {
         const headers = {
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
@@ -24,15 +28,10 @@ const sio = require('socket.io')(server, {
         res.writeHead(200, headers);
         res.end();
     },
-    allowRequest: (req, callback) => {
-        const noOriginHeader = req.headers.origin === undefined;
-        callback(null, noOriginHeader);
-    }
 });
 
 subscriber.notifications.on("virtual", (payload) => {
     try {
-
         if (payload != null && payload != undefined) {
             sio.emit(payload.channel, JSON.stringify({ mensaje: payload.mensaje, tipo: payload.tipo }));
         }
