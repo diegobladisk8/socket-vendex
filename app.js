@@ -16,6 +16,7 @@ const app = express();
 const server = require("http").createServer();
 
 const sio = require("socket.io")(server, {
+    allowEIO3: true,
     cors: {
         origin: "*",
         methods: ["GET", "POST"]
@@ -24,7 +25,6 @@ const sio = require("socket.io")(server, {
 
 subscriber.notifications.on("virtual", (payload) => {
     try {
-
         if (payload != null && payload != undefined) {
             sio.emit(payload.channel, JSON.stringify({ mensaje: payload.mensaje, tipo: payload.tipo }));
         }
