@@ -5,7 +5,6 @@ const require = createRequire(
     import.meta.url);
 
 import express from "express";
-//const http = require('http');
 
 const subscriber = createSubscriber({ connectionString: `postgres://${process.env.POSTGRESQL_USERNAME}:${process.env.POSTGRESQL_PASSWORD}@${process.env.POSTGRESQL_HOST}:5432/${process.env.POSTGRESQL_DATABASE}` })
 
@@ -13,12 +12,12 @@ const subscriber = createSubscriber({ connectionString: `postgres://${process.en
 
 const app = express();
 
-const server = require("http").createServer();
+const server = require('http').createServer();
 
-const sio = require("socket.io")(server, {
+const sio = require('socket.io')(server, {
     allowEIO3: true,
     cors: {
-        origin: "*",
+        origins: ["https://pos.vendex.ec", "https://erp-test.isacode.com"],
         methods: ["GET", "POST"]
     }
 });
