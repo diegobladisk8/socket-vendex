@@ -12,10 +12,11 @@ const app = express();
 const server = http.createServer(app);
 
 const io = require('socket.io')(server, {
+    allowEIO3: true,
     handlePreflightRequest: (req, res) => {
         const headers = {
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Origin": "*", //or the specific origin you want to give access to,
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Credentials": true
         };
         res.writeHead(200, headers);
