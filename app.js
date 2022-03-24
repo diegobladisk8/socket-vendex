@@ -5,14 +5,21 @@ const require = createRequire(
 import express from "express";
 
 const http = require('http');
+
 const subscriber = createSubscriber({ connectionString: `postgres://${process.env.POSTGRESQL_USERNAME}:${process.env.POSTGRESQL_PASSWORD}@${process.env.POSTGRESQL_HOST}:5432/${process.env.POSTGRESQL_DATABASE}` })
-    //const subscriber = createSubscriber({ connectionString: 'postgres://postgres:postgres@localhost:5432/isacode' })
+
+//const subscriber = createSubscriber({ connectionString: 'postgres://postgres:postgres@localhost:5432/isacode' })
 
 const app = express();
 const server = http.createServer(app);
 
 const io = require('socket.io')(server, {
     allowEIO3: true,
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        credentials: true
+    },
     handlePreflightRequest: (req, res) => {
         const headers = {
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
@@ -23,7 +30,6 @@ const io = require('socket.io')(server, {
         res.end();
     }
 });
-
 subscriber.notifications.on("virtual", (payload) => {
     try {
         if (payload != null && payload != undefined) {
